@@ -1,0 +1,12 @@
+查看错误信息小技巧
+在获得了等号命令的输出之后，可以通过管道将输出传给另一个 sed 编辑器脚本，由后者使
+用 N 命令来合并这两行。还需使用替换命令将换行符更换成空格或制表符。最终的解决方法如下
+所示：
+$ sed '=' data2.txt | sed 'N; s/\n/ /'
+$ nl data2.txt
+$ cat -n data2.txt
+$ nl data2.txt | sed 's/ //; s/\t/ /'
+查看含有error/ERROE中的10行信息
+$ sed -n '/[eE][rR][rR][oO][rR]/,+10p'
+两个结合
+$ sed '=' data2.txt| sed 'N;s/\n/ /'| sed -n '/[eE][rR][rR][oO][rR]/,+10p'
